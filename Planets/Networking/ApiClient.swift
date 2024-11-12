@@ -8,7 +8,7 @@ protocol ApiClientProtocol {
 struct ApiClient: ApiClientProtocol {    
     func fetch<T>(url: URLRequest) async throws -> T where T : Decodable {
         guard let data = try await makeRequest(urlRequest: url, retry: 3) else {
-            throw ApiClientError.urlError
+            throw ApiClientError.noData
         }
         return try JSONDecoder().decode(T.self, from: data)
     }
@@ -24,6 +24,9 @@ struct ApiClient: ApiClientProtocol {
                 
                 guard let httpResponse = urlResponse as? HTTPURLResponse,
                       (200...299).contains(httpResponse.statusCode) else {
+                    if (urlResponse as? HTTPURLResponse)?.statusCode == 429 {
+                        usleep(3000000)
+                    }
                     throw ApiClientError.httpCodeError(code: (urlResponse as? HTTPURLResponse)?.statusCode ?? 0)
                 }
                 
