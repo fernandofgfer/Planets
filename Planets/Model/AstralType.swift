@@ -1,4 +1,39 @@
-enum AstralType: String, Decodable {
-    case space = "SPACE"
-    case Polyanet = "POLYANET"
+enum AstralType: Decodable, Equatable {
+    case space
+    case Polyanet
+    case soloon(color: String)
+    case cometh(direction: String)
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let rawValue = try container.decode(String.self)
+        
+        // Split the value to separate color and model
+        let components = rawValue.split(separator: "_")
+        
+        // Ensure there's at least a color and model component
+        guard components.count == 2 else {
+            switch components.first {
+            case "SPACE":
+                self = .space
+            case "POLYANET":
+                self = .Polyanet
+            default:
+                try self.init(from: decoder)
+            }
+            return
+        }
+        
+        let property = String(components[0]).lowercased()
+        let modelName = String(components[1])
+        
+        switch modelName {
+        case "SOLOON":
+            self = .soloon(color: property)
+        case "COMETH":
+            self = .cometh(direction: property)
+        default:
+            try self.init(from: decoder)
+        }
+    }
 }

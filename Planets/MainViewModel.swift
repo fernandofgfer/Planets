@@ -17,40 +17,26 @@ struct MainViewModel: MainViewModelProtocol {
     func doAPolyanetCross() async {
         do {
             let map = try await galaxyMapDataSource.fetchGoalMap()
-            
-            try await withThrowingTaskGroup(of: Void.self) { group in
-                for i in 0...(map.goal.count - 1) {
-                    for j in 0...(map.goal[i].count - 1) {
-                        if map.goal[i][j] == .Polyanet {
-                            group.addTask {
-                                try await astralDataSource.putPolyanet(row: i, column: j)
-                                print("Set PolyAnet row:\(i) columnd:\(j)")
-                            }
-                        }
+            for i in 0...(map.goal.count - 1) {
+                for j in 0...(map.goal[i].count - 1) {
+                    let astralType = map.goal[i][j]
+                    switch astralType {
+                    case .Polyanet:
+                        try await astralDataSource.putPolyanet(row: i, column: j)
+                        print("Set PolyAnet at row:\(i) columnd:\(j)")
+                    case .soloon(let color):
+                        try await astralDataSource.putSoloon(row: i, column: j, color: color)
+                        print("Set Soloon at row:\(i) columnd:\(j)")
+                    case .cometh(let direction):
+                        try await astralDataSource.putCometh(row: i, column: j, direction: direction)
+                        print("Set Soloon at row:\(i) columnd:\(j)")
+                    case .space:
+                        print("Space found at row:\(i) columnd:\(j)")
                     }
                 }
-                try await group.waitForAll()
             }
         } catch {
             print(error)
         }
-        
-//        let urlRequest = URLRequest(crossmintPath: "map/5d36690a-c5fb-4551-9452-842898a52f46/goal")!
-//        do {
-//            let map: Map? = try await apiClient.fetch(url: urlRequest)
-//            if let map {
-//                for i in 0...(map.goal.count - 1) {
-//                    for j in 0...(map.goal[i].count - 1) {
-//                        if map.goal[i][j] == .Polyanet {
-//                            let urlRequest = URLRequest(crossmintPath: "polyanets", parameters: Position(row: i, column: j), httpMethod: .post)
-//                            try await apiClient.fetch(url: urlRequest!)
-//                        }
-//                    }
-//                }
-//            }
-//        } catch {
-//            print(error)
-//        }
-        
     }
 }
