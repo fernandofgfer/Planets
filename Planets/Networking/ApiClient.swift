@@ -22,9 +22,12 @@ struct ApiClient: ApiClientProtocol {
             do {
                 let (data, urlResponse) = try await URLSession.shared.data(for: urlRequest)
                 
-                guard let httpResponse = urlResponse as? HTTPURLResponse,
-                      (200...299).contains(httpResponse.statusCode) else {
-                    if (urlResponse as? HTTPURLResponse)?.statusCode == 429 {
+                guard let httpResponse = urlResponse as? HTTPURLResponse else {
+                    throw ApiClientError.httpResponseInvalid
+                }
+                
+                guard (200...299).contains(httpResponse.statusCode) else {
+                    if httpResponse.statusCode == 429 {
                         usleep(3000000)
                     }
                     throw ApiClientError.httpCodeError(code: (urlResponse as? HTTPURLResponse)?.statusCode ?? 0)
