@@ -11,7 +11,7 @@ import SwiftUI
 struct PlanetsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainAssembler().make()
         }
     }
 }
