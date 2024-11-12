@@ -1,6 +1,6 @@
 enum AstralType: Decodable, Equatable {
     case space
-    case Polyanet
+    case polyanet
     case soloon(color: String)
     case cometh(direction: String)
     
@@ -17,7 +17,7 @@ enum AstralType: Decodable, Equatable {
             case "SPACE":
                 self = .space
             case "POLYANET":
-                self = .Polyanet
+                self = .polyanet
             default:
                 try self.init(from: decoder)
             }

@@ -21,7 +21,7 @@ struct MainViewModel: MainViewModelProtocol {
                 for j in 0...(map.goal[i].count - 1) {
                     let astralType = map.goal[i][j]
                     switch astralType {
-                    case .Polyanet:
+                    case .polyanet:
                         try await astralDataSource.putPolyanet(row: i, column: j)
                         print("Set PolyAnet at row:\(i) columnd:\(j)")
                     case .soloon(let color):
