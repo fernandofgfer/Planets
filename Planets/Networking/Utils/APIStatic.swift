@@ -7,7 +7,7 @@
 
 
 struct APIStatic {
-    private static let candidateId = "5d36690a-c5fb-4551-9452-842898a52f46"
+    static let candidateId = "5d36690a-c5fb-4551-9452-842898a52f46"
     private static let baseURL = "https://challenge.crossmint.io/api"
     private static let postPolyanet = "polyanets"
     private static let postSoloon = "soloons"

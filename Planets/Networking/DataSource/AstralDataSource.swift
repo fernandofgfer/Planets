@@ -55,7 +55,7 @@ struct AstralDataSource: AstralDataSourceProtocol {
         let resource = Resource(path: AstralDataSourcePaths.postPolyanet.getPath(),
                                 httpMethod: .post,
                                 parameters: [
-                                    "candidateId": "5d36690a-c5fb-4551-9452-842898a52f46",
+                                    "candidateId": APIStatic.candidateId,
                                     "row": String(row),
                                     "column": String(column)
                                 ])
@@ -66,7 +66,7 @@ struct AstralDataSource: AstralDataSourceProtocol {
         let resource = Resource(path: AstralDataSourcePaths.postCometh.getPath(),
                                 httpMethod: .post,
                                 parameters: [
-                                    "candidateId": "5d36690a-c5fb-4551-9452-842898a52f46",
+                                    "candidateId": APIStatic.candidateId,
                                     "row": String(row),
                                     "column": String(column),
                                     "direction": direction
@@ -78,7 +78,7 @@ struct AstralDataSource: AstralDataSourceProtocol {
         let resource = Resource(path: AstralDataSourcePaths.postSoloon.getPath(),
                                 httpMethod: .post,
                                 parameters: [
-                                    "candidateId": "5d36690a-c5fb-4551-9452-842898a52f46",
+                                    "candidateId": APIStatic.candidateId,
                                     "row": String(row),
                                     "column": String(column),
                                     "color": color
