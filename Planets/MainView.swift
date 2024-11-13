@@ -26,7 +26,3 @@ struct MainView: View {
         .padding()
     }
 }
-
-//#Preview {
-//    MainView(viewModel: MainViewModel())
-//}
