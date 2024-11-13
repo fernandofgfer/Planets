@@ -1,11 +1,3 @@
-//
-//  APIStatic.swift
-//  Planets
-//
-//  Created by Fernando Garcia Fernandez on 13/11/24.
-//
-
-
 struct APIStatic {
     static let candidateId = "5d36690a-c5fb-4551-9452-842898a52f46"
     private static let baseURL = "https://challenge.crossmint.io/api"
