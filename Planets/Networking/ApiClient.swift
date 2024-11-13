@@ -1,7 +1,17 @@
 import Foundation
 
+/// Protocol defining methods for making network requests.
 protocol ApiClientProtocol {
+
+    /// Fetches and decodes data from a URL request into a specified Decodable type.
+    /// - Parameter url: The URL request to fetch data from.
+    /// - Returns: A decoded object of the specified type.
+    /// - Throws: An error if the request fails or data cannot be decoded.
     func fetch<T: Decodable>(url: URLRequest) async throws -> T
+    
+    /// Fetches data from a URL request without expecting a return value.
+    /// - Parameter url: The URL request to fetch data from.
+    /// - Throws: An error if the request fails.
     func fetch(url: URLRequest) async throws
 }
 

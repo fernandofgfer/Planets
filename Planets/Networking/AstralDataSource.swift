@@ -1,8 +1,29 @@
 import Foundation
 
+/// Protocol defining methods for adding various astral elements to specific positions on a map.
 protocol AstralDataSourceProtocol {
+    
+    /// Places a Polyanet at the specified row and column on the map.
+    /// - Parameters:
+    ///   - row: The row position for the Polyanet.
+    ///   - column: The column position for the Polyanet.
+    /// - Throws: An error if the request fails.
     func putPolyanet(row: Int, column: Int) async throws
+    
+    /// Places a Cometh at the specified row and column, with a specified direction.
+    /// - Parameters:
+    ///   - row: The row position for the Cometh.
+    ///   - column: The column position for the Cometh.
+    ///   - direction: The direction of the Cometh.
+    /// - Throws: An error if the request fails.
     func putCometh(row: Int, column: Int, direction: String) async throws
+    
+    /// Places a Soloon at the specified row and column, with a specified color.
+    /// - Parameters:
+    ///   - row: The row position for the Soloon.
+    ///   - column: The column position for the Soloon.
+    ///   - color: The color of the Soloon.
+    /// - Throws: An error if the request fails.
     func putSoloon(row: Int, column: Int, color: String) async throws
 }
 

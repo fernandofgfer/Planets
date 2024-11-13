@@ -1,6 +1,11 @@
 import Foundation
 
+/// Protocol defining a method for fetching the goal map in the galaxy.
 protocol GalaxyMapDataSourceProtocol {
+    
+    /// Fetches the goal map.
+    /// - Returns: A `Map` object representing the goal map.
+    /// - Throws: An error if the request fails.
     func fetchGoalMap() async throws -> Map
 }
 
