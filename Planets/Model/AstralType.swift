@@ -19,7 +19,7 @@ enum AstralType: Decodable, Equatable {
             case "POLYANET":
                 self = .polyanet
             default:
-                try self.init(from: decoder)
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unable to decode")
             }
             return
         }
@@ -33,7 +33,7 @@ enum AstralType: Decodable, Equatable {
         case "COMETH":
             self = .cometh(direction: property)
         default:
-            try self.init(from: decoder)
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unable to decode")
         }
     }
 }
