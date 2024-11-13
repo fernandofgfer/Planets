@@ -8,7 +8,7 @@ extension URLRequest {
     /// - Throws: An `ApiClientError.urlError` if the URL is invalid.
     init(with resource: Resource) throws {
         // Construct the full URL from the base and resource path
-        guard let url = URL(string: "https://challenge.crossmint.io/api/\(resource.path)") else {
+        guard let url = URL(string: resource.path) else {
             throw ApiClientError.urlError
         }
         self.init(url: url)

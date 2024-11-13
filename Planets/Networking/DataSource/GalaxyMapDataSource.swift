@@ -17,7 +17,7 @@ struct GalaxyMapDataSource: GalaxyMapDataSourceProtocol {
         func getPath() -> String {
             switch self {
             case .getGoal:
-                "map/5d36690a-c5fb-4551-9452-842898a52f46/goal"
+                APIStatic.getGoalMap
             }
         }
     }

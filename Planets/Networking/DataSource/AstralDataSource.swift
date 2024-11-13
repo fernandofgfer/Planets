@@ -36,11 +36,11 @@ struct AstralDataSource: AstralDataSourceProtocol {
         func getPath() -> String {
             switch self {
             case .postPolyanet:
-                "polyanets"
+                APIStatic.putPolyanet
             case .postCometh:
-                "comeths"
+                APIStatic.putCometh
             case .postSoloon:
-                "soloons"
+                APIStatic.putSoloon
             }
         }
     }

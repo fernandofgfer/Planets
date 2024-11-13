@@ -17,7 +17,7 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            Button("First Stage") {
+            Button("Generate astral map") {
                 Task {
                     await viewModel.doAPolyanetCross()
                 }
